@@ -1,15 +1,18 @@
 Package: climbr
-Title: What the Package Does (One Line, Title Case)
+Title: R client for scraping Rock Climbing data from the Mountain Project API
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Mukund",
+           family = "Varma",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = structure("YOUR-ORCID-ID", .Names = "ORCID"))
-Description: What the package does (one paragraph).
-License: MIT + file LICENSE
+           email = "mmv1301@gmail.com")
+Description: This package provides an R interface to the Mountain Project
+	API. The Mountain Project is a climbing resource maintained by REI, that
+	contains user-curated information and ratings for routes. 
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Suggests: 
+    testthat (>= 2.1.0)
