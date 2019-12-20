@@ -30,8 +30,7 @@ names(ROCK_GRADES_DICT) = ROCK_GRADES
 #' private key in a json file and read it in with this function or construct a
 #' named list (see examples)
 #' 
-#' @param
-#' @param
+#' @param config named vector containing private key, base url (for using other projects)
 #' 
 #' @return
 #' 
@@ -64,7 +63,7 @@ validate_config(config) <- {
 }
 
 
-#' Read in Mountain Project config file.
+#' Read in Mountain Project API config file.
 #' 
 #' The Mountain Project API requires API calls to be accompanied by a private key. 
 #' Additionally, since the API for the other "Projects" (Hiking Project, 
@@ -73,8 +72,7 @@ validate_config(config) <- {
 #' private key in a json file and read it in with this function or construct a
 #' named list (see examples)
 #' 
-#' @param
-#' @param
+#' @param filename
 #' 
 #' @return
 #' 
@@ -103,8 +101,11 @@ read_api_config(filename) <- {
 #' private key in a json file and read it in with this function or construct a
 #' named list (see examples)
 #' 
-#' @param
-#' @param
+#' @param config
+#' @param private_key
+#' @param base_url
+#' @param query_name
+#' @param query_args
 #' 
 #' @return
 #' 
@@ -152,8 +153,9 @@ make_query <- function(config=NULL,
 #' private key in a json file and read it in with this function or construct a
 #' named list (see examples)
 #' 
-#' @param
-#' @param
+#' @param config
+#' @param user_id
+#' @param email
 #' 
 #' @return
 #' 
@@ -173,6 +175,7 @@ get_user <- function(config=NULL, user_id=NULL, email=NULL) {
 		query_args = list(email=email)
 
 	user <- make_query(config, query_name="get-user", query_args=query_args)
+	
 	return(user)
 }
 
@@ -203,12 +206,13 @@ get_ticks <- function(config=NULL,
 		stop("Either user ID or email must be provided.")
 	}
 
-	if (email != NULL)
+	if (email == NULL)
 		query_args = list(user_id=user_id, startPos=start_pos)
 	else
 		query_args = list(email=email, startPos=start_pos)
 
 	routes <- make_query(config, query_name="get-ticks", query_args=query_args)
+
 	return(routes)
 }
 
@@ -242,6 +246,7 @@ get_todos <- function(config=NULL, user_id=NULL, email=NULL) {
 		query_args = list(email=email, startPos=start_posx)
 
 	routes <- make_query(config, query_name="get-todos", query_args=query_args)
+
 	return(routes)
 }
 
